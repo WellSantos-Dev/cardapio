@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Header } from "./components/Header";
+import { Results } from "./components/Results";
+import { useState } from 'react'
+import data from './data'
 
 function App() {
+  const [ menuItems, setMenuItems ] = useState(data)
+
+  const filterItems = (category) => {
+    if(category === 'all') {
+      setMenuItems(data)
+      return;
+    }
+
+    const newItems = data.filter((item) => item.category === category)
+    setMenuItems(newItems)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex items-center justify-center flex-col">
+      <h1 className="text-4xl font-semibold text-white pb-16 pt-32"><span className="text-pink-500 font-bold">#</span> Cardapio diário</h1>
+      <Header filterItems={filterItems}/>
+      <Results items={menuItems}/>
     </div>
   );
 }
