@@ -2,7 +2,7 @@ export const Results = ({items}) => {
   
   console.log(items)
   return (
-    <div className="flex flex-wrap items-center">
+    <div className="flex flex-wrap items-center justify-center">
       {items.map((result) => {
         const { image, price, name, text } = result
         return <div className="flex items-center max-w-xl m-4 rounded-md bg-sky-900 p-2">
